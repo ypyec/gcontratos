@@ -1,3 +1,0 @@
-{{extend 'layout.html'}}
-<h1>Está es la plantilla default/admin.html</h1>
-{{=BEAUTIFY(response._vars)}}
