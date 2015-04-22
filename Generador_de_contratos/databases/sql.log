@@ -1,0 +1,119 @@
+timestamp: 2015-04-21T17:11:08.116000
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(512),
+    password VARCHAR(512),
+    registration_key VARCHAR(512),
+    reset_password_key VARCHAR(512),
+    registration_id VARCHAR(512),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:09.907000
+CREATE TABLE auth_group(
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(512),
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:10.959000
+CREATE TABLE auth_membership(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:13.033000
+CREATE TABLE auth_permission(
+    id INT AUTO_INCREMENT NOT NULL,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    name VARCHAR(512),
+    table_name VARCHAR(512),
+    record_id INT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:14.471000
+CREATE TABLE auth_event(
+    id INT AUTO_INCREMENT NOT NULL,
+    time_stamp DATETIME,
+    client_ip VARCHAR(512),
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin VARCHAR(512),
+    description LONGTEXT,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:16.030000
+CREATE TABLE auth_cas(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on DATETIME,
+    service VARCHAR(512),
+    ticket VARCHAR(512),
+    renew CHAR(1),
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:17.491000
+CREATE TABLE t_empresa(
+    id INT AUTO_INCREMENT NOT NULL,
+    f_name VARCHAR(512),
+    f_dbname VARCHAR(512),
+    f_start_subscription_date DATETIME,
+    f_end_subscription_date DATETIME,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:20.196000
+CREATE TABLE t_empresa_archive(
+    id INT AUTO_INCREMENT NOT NULL,
+    f_name VARCHAR(512),
+    f_dbname VARCHAR(512),
+    f_start_subscription_date DATETIME,
+    f_end_subscription_date DATETIME,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INT, INDEX current_record__idx (current_record), FOREIGN KEY (current_record) REFERENCES t_empresa (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:23.140000
+CREATE TABLE t_usuario_empresa(
+    id INT AUTO_INCREMENT NOT NULL,
+    f_usuario INT, INDEX f_usuario__idx (f_usuario), FOREIGN KEY (f_usuario) REFERENCES auth_user (id) ON DELETE CASCADE,
+    f_empresa INT, INDEX f_empresa__idx (f_empresa), FOREIGN KEY (f_empresa) REFERENCES t_empresa (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2015-04-21T17:11:26.732000
+CREATE TABLE t_usuario_empresa_archive(
+    id INT AUTO_INCREMENT NOT NULL,
+    f_usuario INT, INDEX f_usuario__idx (f_usuario), FOREIGN KEY (f_usuario) REFERENCES auth_user (id) ON DELETE CASCADE,
+    f_empresa INT, INDEX f_empresa__idx (f_empresa), FOREIGN KEY (f_empresa) REFERENCES t_empresa (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INT, INDEX current_record__idx (current_record), FOREIGN KEY (current_record) REFERENCES t_usuario_empresa (id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
