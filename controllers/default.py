@@ -41,8 +41,10 @@ def tabla():
 
 @auth.requires_membership("Administrador de empresa")
 def crear_usuarios():
+    for empresa in db(db.auth_user.id==auth.user.id).select(db.auth_user.f_empresa):
+        idEmpresa = empresa.f_empresa
     table=db["auth_user"]
-    form = crud.update(table,request.args(1), fields=['id', 'first_name', 'last_name', 'email', 'password'])
+    form = crud.update(table,request.args(1), fields=['id', 'first_name', 'last_name', 'email', 'password'], hidden=dict(empresa=idEmpresa))
     table.id.represent = lambda id, row:        A('Editar: ',id,_href=URL(args=("auth_user",id)))
     search, rows = crud.search(table, fields=['id', 'first_name', 'last_name', 'email'])
     return dict(form=form,search=search,rows=rows)
