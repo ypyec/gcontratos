@@ -11,7 +11,7 @@
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL('mysql://root@localhost/gcontratos',pool_size=1,check_reserved=['all'])
+    db = DAL('mysql://root@localhost/gcontratos',pool_size=1,check_reserved=['all'], lazy_tables=True)
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore+ndb')
@@ -49,6 +49,10 @@ plugins = PluginManager()
 crud = Crud(db);
 
 ## create all tables needed by auth if not custom tables
+auth.settings.extra_fields['auth_user']= [
+	Field('f_empresa', type='reference t_empresa', notnull=True,
+          label=T('Empresa'))
+]
 auth.define_tables(username=False, signature=False)
 
 ## configure email

@@ -117,3 +117,8 @@ CREATE TABLE t_usuario_empresa_archive(
     PRIMARY KEY (id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
+timestamp: 2015-04-28T16:32:46.165585
+ALTER TABLE auth_user ADD f_empresa INT NOT NULL;
+success!
+success!
+success!

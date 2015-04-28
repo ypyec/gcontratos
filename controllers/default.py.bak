@@ -41,8 +41,5 @@ def tabla():
 
 @auth.requires_membership("Administrador de empresa")
 def crear_usuarios():
-    table=db[request.args("auth_user")]
-    form = crud.update(table,request.args(1))
-    table.id.represent = lambda id, row:        A('Editar: ',id,_href=URL(args=(request.args(0),id)))
-    search, rows = crud.search(table)
-    return dict(form=form,search=search,rows=rows)
+    tables = crud.tables()
+    return dict(tables = tables)

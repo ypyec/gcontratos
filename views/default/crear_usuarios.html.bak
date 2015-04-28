@@ -1,4 +1,4 @@
 {{extend 'layout.html'}}
 
-<h1>Crear/Editar Registro</h1>
+<h1>Crear Usuario</h1>
 {{=form}}
