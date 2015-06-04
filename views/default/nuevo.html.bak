@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6" style="width: 49%; float: left;">
             <fieldset>
-                <legend style="width: 75%;">Datos Personales:</legend>
+                <legend>Datos Personales:</legend>
                 <div class="form-group">
                     <label for="txtNombres">Nombres</label>
                     <input type="text" class="form-control" id="txtNombres" placeholder="Nombres completos">
@@ -31,7 +31,7 @@
                     <textarea id="txtExperiencia" class="form-control" rows="3"></textarea>
                 </div>
                 <fieldset>
-                    <legend style="width: 75%;">
+                    <legend>
                         Domicilio Personal
                     </legend>
                     <div class="form-group">
@@ -49,7 +49,7 @@
                 </fieldset>
             </fieldset>
             <fieldset>
-                <legend style="width: 75%;">
+                <legend>
                     Datos Bancarios
                 </legend>
                 <div class="form-group">
@@ -76,7 +76,7 @@
         </div>
         <div class="col-xs-12 col-md-6" style="width: 49%; float: right">
             <fieldset>
-                <legend style="width: 75%;">Objeto:</legend>
+                <legend>Objeto:</legend>
                 <div class="form-group">
                     <label for="txtNombreConsultoria">Nombre Consultoría</label>
                     <input type="text" class="form-control" id="txtNombreConsultoria" placeholder="Nombre Consultoria">
@@ -86,7 +86,7 @@
                     <textarea id="txtDescripcion" class="form-control" rows="3"></textarea>
                 </div>
                 <fieldset>
-                    <legend style="width: 75%;">
+                    <legend>
                         Obligaciones adicionales:
                     </legend>
                     <div class="radio">
@@ -104,7 +104,7 @@
                 </fieldset>
             </fieldset>
             <fieldset>
-                <legend style="width: 75%;">
+                <legend>
                     Duración y Honorarios
                 </legend>
                 <div class="form-group">

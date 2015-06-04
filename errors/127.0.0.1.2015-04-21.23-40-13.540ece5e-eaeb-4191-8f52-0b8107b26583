@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S'<class \'gluon.contrib.pymysql.err.ProgrammingError\'> (1146, u"Table \'gcontratos.auth_group\' doesn\'t exist")'
+p3
+sS'layer'
+p4
+S'/Applications/web2py.app/Contents/Resources/applications/gcontratos/models/menu.py'
+p5
+sS'code'
+p6
+S"response.title = settings.title\nresponse.subtitle = settings.subtitle\nresponse.meta.author = '%(author)s <%(author_email)s>' % settings\nresponse.meta.keywords = settings.keywords\nresponse.meta.description = settings.description\nresponse.menu = [\n(T('Index'),URL('default','index')==URL(),URL('default','index'),[]),\n]\nif(auth.has_membership(role = 'Super Admin')):\n    response.menu += [(T('Administracion'),URL('default','admin')==URL(),URL('default','admin'),[]),\n]\nelif(auth.has_membership(role = 'Administrador de empresa')):\n    response.menu += [(T('Administracion'),URL('default','crear_usuarios')==URL(),URL('default','crear_usuarios'),[]),\n]\nelif(auth.user_id != None ):\n    response.menu += [(T('Nuevo'),URL('default','nuevo')==URL(),URL('default','nuevo'),[]),\n(T('Editar'),URL('default','editar')==URL(),URL('default','editar'),[]),\n(T('Buscar'),URL('default','buscar')==URL(),URL('default','buscar'),[]),\n]\n"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/Applications/web2py.app/Contents/Resources/gluon/restricted.py", line 227, in restricted\n  File "/Applications/web2py.app/Contents/Resources/applications/gcontratos/models/menu.py", line 9, in <module>\n  File "/Applications/web2py.app/Contents/Resources/gluon/tools.py", line 3538, in has_membership\n  File "/Applications/web2py.app/Contents/Resources/gluon/tools.py", line 3512, in id_group\n  File "/Applications/web2py.app/Contents/Resources/gluon/packages/dal/pydal/objects.py", line 2093, in select\n  File "/Applications/web2py.app/Contents/Resources/gluon/packages/dal/pydal/adapters/base.py", line 1239, in select\n  File "/Applications/web2py.app/Contents/Resources/gluon/packages/dal/pydal/adapters/base.py", line 1204, in _select_aux\n  File "/Applications/web2py.app/Contents/Resources/gluon/packages/dal/pydal/adapters/base.py", line 1326, in execute\n  File "/Applications/web2py.app/Contents/Resources/gluon/packages/dal/pydal/adapters/base.py", line 1320, in log_execute\n  File "/Applications/web2py.app/Contents/Resources/gluon/contrib/pymysql/cursors.py", line 117, in execute\n  File "/Applications/web2py.app/Contents/Resources/gluon/contrib/pymysql/connections.py", line 202, in defaulterrorhandler\nProgrammingError: (1146, u"Table \'gcontratos.auth_group\' doesn\'t exist")\n'
+p11
+s.
