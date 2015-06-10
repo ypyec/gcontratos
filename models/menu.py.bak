@@ -11,8 +11,13 @@ if(auth.has_membership(role = 'Super Admin')):
 ]
 elif(auth.has_membership(role = 'Administrador de empresa')):
     response.menu += [(T('Administracion'),URL('default','crear_usuarios')==URL(),URL('default','crear_usuarios'),[]),
-elif(auth.user_id != None ):
-    response.menu += [(T('Nuevo'),URL('default','nuevo')==URL(),URL('default','nuevo'),[]),
-(T('Editar'),URL('default','editar')==URL(),URL('default','editar'),[]),
-(T('Buscar'),URL('default','buscar')==URL(),URL('default','buscar'),[]),
 ]
+elif(auth.user_id != None ):
+    response.menu += [(T('Crear Contrato'),False, '', [['Persona', URL('default','nuevoConPersona')==URL(),URL('default','nuevoConPersona')], 
+                                              ['Empresa', URL('default','nuevoConEmpresa')==URL(),URL('default','nuevoConEmpresa')]
+                                             ]),
+                      (T('Enmendar Contrato'),URL('default','nuevaEnmienda')==URL(),URL('default','enmienda'), []),
+                      (T('Consultar'),False, '', [['Contratos', URL('default','contratos')==URL(),URL('default','contratos')], 
+                                                  ['Enmiendas', URL('default','enmiendas')==URL(),URL('default','enmiendas')]
+                                                 ]),
+                     ]
