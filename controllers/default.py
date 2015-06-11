@@ -28,11 +28,7 @@ def nuevoConPersona():
                   FIELDSET(LEGEND('Objeto'),
                        DIV(LABEL('Nombre de la Consultoría'),INPUT(_name='consultoria', _placeholder='Nombre de la Consultoría', requires=IS_NOT_EMPTY())),
                        DIV(LABEL('Descripción'), TEXTAREA(_name='descripcionX', _placeholder='Descripción', requires=IS_NOT_EMPTY())),
-                       DIV(LEGEND('Obligaciones Adicionales'),
-                           DIV(INPUT(_type='radio', _name='rbnObligaciones', _value=True), ' Existen'),
-                           DIV(INPUT(_type='radio', _name='rbnObligaciones', _value=False, _checked=True), ' No Existen'),
-                           DIV(TEXTAREA(_name='obligacionesAdicionalesX', _placeholder='Si aplica')),
-                          ),
+                       DIV(LABEL('Obligaciones Adicionales'), TEXTAREA(_name='obligacionesAdicionalesX', _placeholder='Si aplica')),
                       ),
                  _class='columna',
                  ),
@@ -99,11 +95,7 @@ def nuevoConEmpresa():
                   FIELDSET(LEGEND('Objeto'),
                        DIV(LABEL('Nombre de la Consultoría'),INPUT(_name='consultoria', _placeholder='Nombre de la Consultoría', requires=IS_NOT_EMPTY())),
                        DIV(LABEL('Descripción'), TEXTAREA(_name='descripcionX', _placeholder='Descripción', requires=IS_NOT_EMPTY())),
-                       DIV(LEGEND('Obligaciones Adicionales'),
-                           DIV(INPUT(_type='radio', _name='rbnObligaciones', _value=True), ' Existen'),
-                           DIV(INPUT(_type='radio', _name='rbnObligaciones', _value=False, _checked=True), ' No Existen'),
-                           DIV(TEXTAREA(_name='obligacionesAdicionalesX', _placeholder='Si aplica')),
-                          ),
+                       DIV(LABEL('Obligaciones Adicionales'), TEXTAREA(_name='obligacionesAdicionalesX', _placeholder='Si aplica')),
                       ),
                  _class='columna',
                  ),
@@ -169,11 +161,7 @@ def nuevaEnmienda():
     form2=FORM(DIV(FIELDSET(LEGEND('Objeto'),
                            DIV(LABEL('Nombre de la Consultoría'),INPUT(_name='consultoria', _placeholder='Nombre de la Consultoría', requires=IS_NOT_EMPTY())),
                            DIV(LABEL('Descripción'), TEXTAREA(_name='descripcionX', _placeholder='Descripción', requires=IS_NOT_EMPTY())),
-                           DIV(LEGEND('Obligaciones Adicionales'),
-                               DIV(INPUT(_type='radio', _name='rbnObligaciones', _value=True), ' Existen'),
-                               DIV(INPUT(_type='radio', _name='rbnObligaciones', _value=False, _checked=True), ' No Existen'),
-                               DIV(TEXTAREA(_name='obligacionesAdicionalesX', _placeholder='Si aplica')),
-                              ),
+                           DIV(LABEL('Obligaciones Adicionales'), TEXTAREA(_name='obligacionesAdicionalesX', _placeholder='Si aplica')),
                            ),
                    FIELDSET(LEGEND('Duración'),
                             DIV(LABEL('Fecha de Inicio'),INPUT(_name='fechaInicio', _type='date', requires=IS_NOT_EMPTY())),
@@ -220,8 +208,36 @@ def nuevaEnmienda():
     return dict(form1=form1, form2=form2)
 
 @auth.requires_login()
-def buscar():
-    return dict()
+def enmiendas():
+    form=FORM(FIELDSET(LEGEND('Buscar por:'),
+                        DIV(SELECT('Número de contrato', 'C.I / RUC', 'Proyecto', _name='filtro', requires=IS_NOT_EMPTY())),
+                        DIV(INPUT(_name='consulta', requires=IS_NOT_EMPTY())),
+                        DIV(INPUT(_type='submit',_value='BUSCAR')),
+                       _class='buscador'
+                       )
+              )
+    rows = {}
+    if form.accepts(request,session):
+        rows = 'form accepted'
+    elif form.errors:
+        rows = 'form has errors'
+    return dict(form=form,rows=rows)
+
+@auth.requires_login()
+def contratos():
+    form=FORM(FIELDSET(LEGEND('Buscar por:'),
+                        DIV(SELECT('Número de contrato', 'C.I / RUC', 'Proyecto', _name='filtro', requires=IS_NOT_EMPTY())),
+                        DIV(INPUT(_name='consulta', requires=IS_NOT_EMPTY())),
+                        DIV(INPUT(_type='submit',_value='BUSCAR')),
+                       _class='buscador'
+                       )
+              )
+    rows = {}
+    if form.accepts(request,session):
+        rows = 'form accepted'
+    elif form.errors:
+        rows = 'form has errors'
+    return dict(form=form,rows=rows)
 
 
 @auth.requires_membership("Super Admin")

@@ -351,3 +351,11 @@ h2 {
 .btnEnviar{
     width: 100% !important;
 }
+.buscador {
+  text-align: center;
+}
+.buscador div {
+  display: inline-block;
+  padding: 5px;
+  vertical-align: top;
+}
